@@ -1,0 +1,57 @@
+[project]
+name = "energemin"
+version = "0.1.0"
+description = "Energemin is a tool to audit machine energy efficiency and provide actionable insights and suggestions to improve its energy efficiency using Gemini LLM."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "google-auth",
+    "google-cloud-aiplatform>=1.71.1",
+    "requests>=2.32.3",
+    "psutil>=6.1.0",
+    "geocoder>=1.38.1",
+    "langchain>=0.2.12",
+    "fire>=0.7.0",
+    "chainlit>=1.3.2",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.7.1",
+    "pytest>=7.5.2",
+    "pytest-asyncio>=0.24.0",
+]
+
+[tool.pytest]
+pythonpath = "src"
+
+[tool.ruff]
+fix = true
+line-length = 120
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+select = [
+    "YTT", # flake8-2020
+    "B", # flake8-bugbear
+    "A", # flake8-builtins
+    "C4", # flake8-comprehensions
+    "T10", # flake8-debugger
+    "INP", # flake8-no-pep420
+    "T20", # flake8-print
+    "PT", # flake8-pytest-style
+    "SIM", # flake8-simplify
+    "TID", # flake8-tidy-imports
+    "I", # isort
+    "C90", # mccabe
+    "E", # pycodestyle
+    "W", # pycodestyle
+    "F", # pyflakes
+    "PGH", # pygrep-hooks
+    "RUF", # ruff
+]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+lines-between-types = 1
+section-order = ["future", "standard-library", "first-party", "third-party", "local-folder"]
