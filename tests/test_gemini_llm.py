@@ -1,8 +1,12 @@
-import pytest
-from unittest.mock import patch, MagicMock
-import asyncio
 
-from src.gemini_llm import call_vertex_ai_gemini, config_vertex_ai
+from unittest.mock import MagicMock
+from unittest.mock import patch
+
+from src.gemini_llm import call_vertex_ai_gemini
+from src.gemini_llm import config_vertex_ai
+
+import pytest
+
 
 @pytest.fixture
 def mock_vertex_response():
@@ -37,7 +41,7 @@ async def test_call_vertex_ai_gemini_default_model(mock_generative_model, mock_v
 
     assert responses == ["This is a test response"]
     mock_generative_model.assert_called_once_with("gemini-1.5-pro-002")
-    
+
 @pytest.mark.asyncio
 async def test_call_vertex_ai_gemini_custom_model(mock_generative_model, mock_vertex_response):
     model_instance = mock_generative_model.return_value
@@ -72,7 +76,7 @@ async def test_call_vertex_ai_gemini_generation_config(mock_generative_model, mo
 @pytest.mark.asyncio
 async def test_call_vertex_ai_gemini_multiple_responses(mock_generative_model):
     model_instance = mock_generative_model.return_value
-    
+
     # Create multiple mock responses
     mock_responses = [
         MagicMock(text="Response 1"),
